@@ -374,7 +374,7 @@ class MegaDl(Status):
             human_readable_bytes(self._dl_info["completed_length"]),
             human_readable_bytes(self._dl_info["total_length"])
             )
-        msg += "\n<b>│</b>\n<b>├</b> <b>ETA:</b> <b>N/A</b>\n<b>│</b>"
+        msg += "\n<b>│</b>\n<b>├</b> <b>ETA:</b> <b>N/A</b> <b>│</b>"
         
         msg += "\n<b>╰────「</b> <b>Using engine:</b> <code>Mega DL</code> <b>」</b>"
 
