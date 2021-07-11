@@ -225,26 +225,26 @@ def add_handlers(bot: TelegramClient):
 
 async def handle_leech_command(e):
     if not e.is_reply:
-        await e.reply("Reply to a link or magnet")
+        await e.reply("⚡𝗥𝗲𝗽𝗹𝘆 𝘁𝗼 𝗮 𝗹𝗶𝗻𝗸 𝗼𝗿 𝗺𝗮𝗴𝗻𝗲𝘁")
     else:
         rclone = False
         tsp = time.time()
-        buts = [[KeyboardButtonCallback("To Telegram",data=f"leechselect tg {tsp}")]]
+        buts = [[KeyboardButtonCallback("📦𝗧𝗼 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺📦",data=f"leechselect tg {tsp}")]]
         if await get_config() is not None:
             buts.append(
-                [KeyboardButtonCallback("To Drive",data=f"leechselect drive {tsp}")]
+                [KeyboardButtonCallback("📤𝗧𝗼 𝗗𝗿𝗶𝘃𝗲📤",data=f"leechselect drive {tsp}")]
             )
         # tsp is used to split the callbacks so that each download has its own callback
         # cuz at any time there are 10-20 callbacks linked for leeching XD
            
         buts.append(
-                [KeyboardButtonCallback("Upload in a ZIP.[Toggle]", data=f"leechzip toggle {tsp}")]
+                [KeyboardButtonCallback("🤐𝗨𝗽𝗹𝗼𝗮𝗱 𝗶𝗻 𝗮 𝗭𝗜𝗣.[𝗧𝗼𝗴𝗴𝗹𝗲🔰]", data=f"leechzip toggle {tsp}")]
         )
         buts.append(
-                [KeyboardButtonCallback("Extract from Archive.[Toggle]", data=f"leechzipex toggleex {tsp}")]
+                [KeyboardButtonCallback("🗜️𝗘𝘅𝘁𝗿𝗮𝗰𝘁 𝗳𝗿𝗼𝗺 𝗔𝗿𝗰𝗵𝗶𝘃𝗲.[𝗧𝗼𝗴𝗴𝗹𝗲🔰]", data=f"leechzipex toggleex {tsp}")]
         )
         
-        conf_mes = await e.reply(f"First click if you want to zip the contents or extract as an archive (only one will work at a time) then...\n\n<b>Choose where to upload your files:-</b>\nThe files will be uploaded to default destination: <b>{get_val('DEFAULT_TIMEOUT')}</b> after 60 sec of no action by user.</u>\n\n<b>Supported archives to extract:</b>\nzip, 7z, tar, gzip2, iso, wim, rar, tar.gz, tar.bz2",parse_mode="html",buttons=buts)
+        conf_mes = await e.reply(f"𝗙𝗶𝗿𝘀𝘁 𝗰𝗹𝗶𝗰𝗸 𝗶𝗳 𝘆𝗼𝘂 𝘄𝗮𝗻𝘁 𝘁𝗼 𝘇𝗶𝗽 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗿 𝗲𝘅𝘁𝗿𝗮𝗰𝘁 𝗮𝘀 𝗮𝗻 𝗮𝗿𝗰𝗵𝗶𝘃𝗲 (𝗼𝗻𝗹𝘆 𝗼𝗻𝗲 𝘄𝗶𝗹𝗹 𝘄𝗼𝗿𝗸 𝗮𝘁 𝗮 𝘁𝗶𝗺𝗲) 𝘁𝗵𝗲𝗻...\n\n✅𝗖𝗵𝗼𝗼𝘀𝗲 𝘄𝗵𝗲𝗿𝗲 𝘁𝗼 𝘂𝗽𝗹𝗼𝗮𝗱 𝘆𝗼𝘂𝗿 𝗳𝗶𝗹𝗲𝘀:-\n𝗧𝗵𝗲 𝗳𝗶𝗹𝗲𝘀 𝘄𝗶𝗹𝗹 𝗯𝗲 𝘂𝗽𝗹𝗼𝗮𝗱𝗲𝗱 𝘁𝗼 𝗱𝗲𝗳𝗮𝘂𝗹𝘁 𝗱𝗲𝘀𝘁𝗶𝗻𝗮𝘁𝗶𝗼𝗻: <b>{get_val('DEFAULT_TIMEOUT')}</b> 𝗮𝗳𝘁𝗲𝗿 𝟲𝟬 𝘀𝗲𝗰 𝗼𝗳 𝗻𝗼 𝗮𝗰𝘁𝗶𝗼𝗻 𝗯𝘆 𝘂𝘀𝗲𝗿.</u>\n\n𝗦𝘂𝗽𝗽𝗼𝗿𝘁𝗲𝗱 𝗮𝗿𝗰𝗵𝗶𝘃𝗲𝘀 𝘁𝗼 𝗲𝘅𝘁𝗿𝗮𝗰𝘁:\n<code>zip, 7z, tar, gzip2, iso, wim, rar, tar.gz, tar.bz2</code>",parse_mode="html",buttons=buts)
 
         # zip check in background
         ziplist = await get_zip_choice(e,tsp)
@@ -272,12 +272,12 @@ async def handle_leech_command(e):
             if get_val("RCLONE_ENABLED"):
                 await check_link(e,rclone, is_zip, is_ext, conf_mes)
             else:
-                await e.reply("<b>DRIVE IS DISABLED BY THE ADMIN</b>",parse_mode="html")
+                await e.reply("❌𝗗𝗥𝗜𝗩𝗘 𝗜𝗦 𝗗𝗜𝗦𝗔𝗕𝗟𝗘𝗗 𝗕𝗬 𝗧𝗛𝗘 𝗔𝗗𝗠𝗜𝗡",parse_mode="html")
         else:
             if get_val("LEECH_ENABLED"):
                 await check_link(e,rclone, is_zip, is_ext, conf_mes)
             else:
-                await e.reply("<b>TG LEECH IS DISABLED BY THE ADMIN</b>",parse_mode="html")
+                await e.reply("❌𝗧𝗚 𝗟𝗘𝗘𝗖𝗛 𝗜𝗦 𝗗𝗜𝗦𝗔𝗕𝗟𝗘𝗗 𝗕𝗬 𝗧𝗛𝗘 𝗔𝗗𝗠𝗜𝗡",parse_mode="html")
 
 
 async def get_leech_choice(e,timestamp):
@@ -355,19 +355,19 @@ async def get_leech_choice_callback(e,o_sender,lis,ts):
         # encompasses the None situation too
         print("data ",lis)
         if lis[1] is True:
-            await e.answer("Will Not be zipped", alert=True)
+            await e.answer("❌𝗪𝗶𝗹𝗹 𝗡𝗼𝘁 𝗯𝗲 𝘇𝗶𝗽𝗽𝗲𝗱", alert=True)
             lis[1] = False 
         else:
-            await e.answer("Will be zipped", alert=True)
+            await e.answer("✅𝗪𝗶𝗹𝗹 𝗯𝗲 𝘇𝗶𝗽𝗽𝗲𝗱", alert=True)
             lis[1] = True
     elif data[1] == "toggleex":
         print("exdata ",lis)
         # encompasses the None situation too
         if lis[1] is True:
-            await e.answer("It will not be extracted.", alert=True)
+            await e.answer("❌𝗜𝘁 𝘄𝗶𝗹𝗹 𝗻𝗼𝘁 𝗯𝗲 𝗲𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱", alert=True)
             lis[1] = False 
         else:
-            await e.answer("If it is a Archive it will be extracted. Further in you can set password to extract the ZIP.", alert=True)
+            await e.answer("ℹ️𝗜𝗳 𝗶𝘁 𝗶𝘀 𝗮 𝗔𝗿𝗰𝗵𝗶𝘃𝗲 𝗶𝘁 𝘄𝗶𝗹𝗹 𝗯𝗲 𝗲𝘅𝘁𝗿𝗮𝗰𝘁𝗲𝗱. 𝗙𝘂𝗿𝘁𝗵𝗲𝗿 𝗶𝗻 𝘆𝗼𝘂 𝗰𝗮𝗻 𝘀𝗲𝘁 𝗽𝗮𝘀𝘀𝘄𝗼𝗿𝗱 𝘁𝗼 𝗲𝘅𝘁𝗿𝗮𝗰𝘁 𝘁𝗵𝗲 𝗭𝗜𝗣...", alert=True)
             lis[1] = True
     else:
         lis[1] = data[1]
@@ -427,7 +427,7 @@ async def handle_settings_cb(e):
     if await is_admin(e.client,e.sender_id,e.chat_id):
         await handle_setting_callback(e)
     else:
-        await e.answer("⚠️ WARN ⚠️ Dont Touch Admin Settings.",alert=True)
+        await e.answer("⚠️ 𝗪𝗔𝗥𝗡 ⚠️ 𝗗𝗼𝗻𝘁 𝗧𝗼𝘂𝗰𝗵 𝗔𝗱𝗺𝗶𝗻 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀.",alert=True)
 
 async def handle_upcancel_cb(e):
     db = upload_db
@@ -438,12 +438,12 @@ async def handle_upcancel_cb(e):
 
     if str(e.sender_id) == data[3]:
         db.cancel_download(data[1],data[2])
-        await e.answer("Upload has been canceled ;)",alert=True)
+        await e.answer("🔴𝗨𝗽𝗹𝗼𝗮𝗱 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗰𝗮𝗻𝗰𝗲𝗹𝗲𝗱❌;)",alert=True)
     elif e.sender_id in get_val("ALD_USR"):
         db.cancel_download(data[1],data[2])
-        await e.answer("UPLOAD CANCELED IN ADMIN MODE XD ;)",alert=True)
+        await e.answer("🔴𝗨𝗽𝗹𝗼𝗮𝗱 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗰𝗮𝗻𝗰𝗲𝗹𝗲𝗱 𝗜𝗡 𝗔𝗗𝗠𝗜𝗡 𝗠𝗢𝗗𝗘❌ ;)",alert=True)
     else:
-        await e.answer("Can't Cancel others upload 😡",alert=True)
+        await e.answer("𝗖𝗮𝗻'𝘁 𝗖𝗮𝗻𝗰𝗲𝗹 𝗼𝘁𝗵𝗲𝗿𝘀 𝘂𝗽𝗹𝗼𝗮𝗱 😡",alert=True)
 
 
 async def callback_handler_canc(e):
@@ -476,7 +476,7 @@ async def callback_handler_canc(e):
         torlog.info(f"Hashid :- {hashid}")
 
         await cancel_torrent(hashid, is_aria, is_mega)
-        await e.answer("Leech has been canceled ;)",alert=True)
+        await e.answer("🔴𝗟𝗲𝗲𝗰𝗵 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗰𝗮𝗻𝗰𝗲𝗹𝗲𝗱❌ ;)",alert=True)
     elif e.sender_id in get_val("ALD_USR"):
         hashid = data[1]
         hashid = hashid.strip("'")
@@ -484,9 +484,9 @@ async def callback_handler_canc(e):
         torlog.info(f"Hashid :- {hashid}")
         
         await cancel_torrent(hashid, is_aria, is_mega)
-        await e.answer("Leech has been canceled in ADMIN MODE XD ;)",alert=True)
+        await e.answer("🔴𝗟𝗲𝗲𝗰𝗵 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗰𝗮𝗻𝗰𝗲𝗹𝗲𝗱 𝗶𝗻 𝗔𝗗𝗠𝗜𝗡 𝗠𝗢𝗗𝗘 𝗫𝗗❌ ;)",alert=True)
     else:
-        await e.answer("Can't Cancel others leech 😡", alert=True)
+        await e.answer("𝗖𝗮𝗻'𝘁 𝗖𝗮𝗻𝗰𝗲𝗹 𝗼𝘁𝗵𝗲𝗿𝘀 𝗹𝗲𝗲𝗰𝗵 😡", alert=True)
 
 
 async def handle_exec_message_f(e):
@@ -533,7 +533,7 @@ async def handle_exec_message_f(e):
         else:
             await message.reply(OUTPUT)
     else:
-        await message.reply("Only for owner")
+        await message.reply("𝗢𝗻𝗹𝘆 𝗳𝗼𝗿 𝗼𝘄𝗻𝗲𝗿")
 
 async def handle_pincode_cb(e):
     data = e.data.decode("UTF-8")
@@ -543,19 +543,19 @@ async def handle_pincode_cb(e):
         db = tor_db
         passw = db.get_password(data[1])
         if isinstance(passw,bool):
-            await e.answer("torrent expired download has been started now.")
+            await e.answer("🔴𝗧𝗼𝗿𝗿𝗲𝗻𝘁 𝗲𝘅𝗽𝗶𝗿𝗲𝗱...𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝘁𝗮𝗿𝘁𝗲𝗱 𝗻𝗼𝘄.")
         else:
-            await e.answer(f"Your Pincode is {passw}",alert=True)
+            await e.answer(f"🔐𝗬𝗼𝘂𝗿 𝗣𝗶𝗻𝗰𝗼𝗱𝗲 𝗶𝘀 {passw}",alert=True)
 
         
     else:
-        await e.answer("It's not your torrent.",alert=True)
+        await e.answer("😂𝗜𝘁'𝘀 𝗻𝗼𝘁 𝘆𝗼𝘂𝗿 𝘁𝗼𝗿𝗿𝗲𝗻𝘁.",alert=True)
 
 async def upload_document_f(message):
     if get_val("REST11"):
         return
     imsegd = await message.reply(
-        "processing ..."
+        "𝗽𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴 ..."
     )
     imsegd = await message.client.get_messages(message.chat_id,ids=imsegd.id)
     if await is_admin(message.client, message.sender_id, message.chat_id, force_owner=True):
@@ -569,7 +569,7 @@ async def upload_document_f(message):
             )
             #torlog.info(recvd_response)
     else:
-        await message.reply("Only for owner")
+        await message.reply("𝗢𝗻𝗹𝘆 𝗳𝗼𝗿 𝗼𝘄𝗻𝗲𝗿")
     await imsegd.delete()
 
 async def get_logs_f(e):
@@ -584,18 +584,18 @@ async def set_password_zip(message):
     data = message.raw_text.split(" ")
     passdata = message.client.dl_passwords.get(int(data[1]))
     if passdata is None:
-        await message.reply(f"No entry found for this job id {data[1]}")
+        await message.reply(f"🔴𝗡𝗼 𝗲𝗻𝘁𝗿𝘆 𝗳𝗼𝘂𝗻𝗱 𝗳𝗼𝗿 𝘁𝗵𝗶𝘀 𝗷𝗼𝗯 𝗶𝗱 {data[1]}")
     else:
         print(message.sender_id)
         print(passdata[0])
         if str(message.sender_id) == passdata[0]:
             message.client.dl_passwords[int(data[1])][1] = data[2]
-            await message.reply(f"Password updated successfully.")
+            await message.reply(f"✅𝗣𝗮𝘀𝘀𝘄𝗼𝗿𝗱 𝘂𝗽𝗱𝗮𝘁𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆.")
         else:
-            await message.reply(f"Cannot update the password this is not your download.")
+            await message.reply(f"❌𝗖𝗮𝗻𝗻𝗼𝘁 𝘂𝗽𝗱𝗮𝘁𝗲 𝘁𝗵𝗲 𝗽𝗮𝘀𝘀𝘄𝗼𝗿𝗱 𝘁𝗵𝗶𝘀 𝗶𝘀 𝗻𝗼𝘁 𝘆𝗼𝘂𝗿 𝗱𝗼𝘄𝗻𝗹𝗼𝗮𝗱.")
 
 async def start_handler(event):
-    msg = "Hello This is TorToolkitX running on heroku an instance of <a href='https://github.com/XcodersHub/TorToolkitX'>This Repo</a>. Try the repo for yourself and dont forget to put a STAR and fork."
+    msg = "<b>Hello This is TorToolkitX running on heroku an instance of <a href='https://github.com/XcodersHub/TorToolkitX'>This Repo</a>. Try the repo for yourself and dont forget to put a STAR and fork.</b>"
     await event.reply(msg, parse_mode="html")
 
 def progress_bar(percentage):
@@ -688,26 +688,31 @@ async def handle_server_command(message):
 
     if callbk:
         msg = (
-            f"<b>BOT UPTIME:-</b> {diff}\n\n"
-            "<b>CPU STATS:-</b>\n"
-            f"Cores: {cores} Logical: {lcores}\n"
-            f"CPU Frequency: {freqcurrent}  Mhz Max: {freqmax}\n"
-            f"CPU Utilization: {cpupercent}%\n"
-            "\n"
-            "<b>STORAGE STATS:-</b>\n"
-            f"Total: {totaldsk}\n"
-            f"Used: {useddsk}\n"
-            f"Free: {freedsk}\n"
-            "\n"
-            "<b>MEMORY STATS:-</b>\n"
-            f"Available: {memavailable}\n"
-            f"Total: {memtotal}\n"
-            f"Usage: {mempercent}%\n"
-            f"Free: {memfree}\n"
-            "\n"
-            "<b>TRANSFER INFO:</b>\n"
-            f"Download: {dlb}\n"
-            f"Upload: {upb}\n"
+            f"<b>╭─────────「 🤖 𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗦 🤖 」\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> ⏰𝗕𝗢𝗧 𝗨𝗣𝗧𝗜𝗠𝗘:- {diff}\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> 🖥️𝗖𝗣𝗨 𝗦𝗧𝗔𝗧𝗦:-\n"
+            f"<b>│</b> Cores: {cores} Logical: {lcores}\n"
+            f"<b>│</b> CPU Frequency: {freqcurrent}  Mhz Max: {freqmax}\n"
+            f"<b>│</b> CPU Utilization: {cpupercent}%\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> 📀𝗦𝗧𝗢𝗥𝗔𝗚𝗘 𝗦𝗧𝗔𝗧𝗦:-\n"
+            f"<b>│</b> Total: {totaldsk}\n"
+            f"<b>│</b> Used: {useddsk}\n"
+            f"<b>│</b> Free: {freedsk}\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> 🎮𝗠𝗘𝗠𝗢𝗥𝗬 𝗦𝗧𝗔𝗧𝗦:-\n"
+            f"<b>│</b> Available: {memavailable}\n"
+            f"<b>│</b> Total: {memtotal}\n"
+            f"<b>│</b> Usage: {mempercent}%\n"
+            f"<b>│</b> Free: {memfree}\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> ↕️𝗧𝗥𝗔𝗡𝗦𝗙𝗘𝗥 𝗜𝗡𝗙𝗢:-\n"
+            f"<b>│</b> Download: {dlb}\n"
+            f"<b>│</b> Upload: {upb}\n"
+            f"<b>│</b>\n"
+            f"<b>╰──────────「 TorToolKitX 」</b>\n"
         )
         await message.edit(msg, parse_mode="html", buttons=None)
     else:
@@ -718,14 +723,22 @@ async def handle_server_command(message):
 
         
         msg = (
-            f"<b>BOT UPTIME:-</b> {diff}\n\n"
-            f"CPU Utilization: {progress_bar(cpupercent)} - {cpupercent}%\n\n"
-            f"Storage used:- {progress_bar(storage_percent)} - {storage_percent}%\n"
-            f"Total: {totaldsk} Free: {freedsk}\n\n"
-            f"Memory used:- {progress_bar(mempercent)} - {mempercent}%\n"
-            f"Total: {memtotal} Free: {memfree}\n\n"
-            f"Transfer Download:- {dlb}\n"
-            f"Transfer Upload:- {upb}\n"
+            f"<b>╭─────「 🤖 𝗕𝗢𝗧 𝗦𝗧𝗔𝗧𝗦 🤖 」\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> ⏰𝗕𝗢𝗧 𝗨𝗣𝗧𝗜𝗠𝗘:- {diff}\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> 🖥️𝗖𝗣𝗨 𝗨𝘁𝗶𝗹𝗶𝘇𝗮𝘁𝗶𝗼𝗻: {progress_bar(cpupercent)} - {cpupercent}%\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> 💽𝗦𝘁𝗼𝗿𝗮𝗴𝗲 𝘂𝘀𝗲𝗱:- {progress_bar(storage_percent)} - {storage_percent}%\n"
+            f"<b>│</b> Total: {totaldsk} Free: {freedsk}\n"
+            f"<b>│</b>\n"
+            f"<b>├</b> 🎮𝗠𝗲𝗺𝗼𝗿𝘆 𝘂𝘀𝗲𝗱:- {progress_bar(mempercent)} - {mempercent}%\n"
+            f"<b>│</b> Total: {memtotal} Free: {memfree}\n"
+            f"<b>│</b>\n"            
+            f"<b>├</b> 🔽𝗧𝗿𝗮𝗻𝘀𝗳𝗲𝗿 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱:- {dlb}\n"
+            f"<b>├</b> 🔼𝗧𝗿𝗮𝗻𝘀𝗳𝗲𝗿 𝗨𝗽𝗹𝗼𝗮𝗱:- {upb}\n"
+            f"<b>│</b>\n"             
+            f"<b>╰─────「 TorToolKitX 」</b>\n"            
         )
         await message.reply(msg, parse_mode="html", buttons=[[KeyboardButtonCallback("Get detailed stats.","fullserver")]])
 
@@ -734,25 +747,25 @@ async def about_me(message):
     db = var_db
     _, val1 = db.get_variable("RCLONE_CONFIG")
     if val1 is None:
-        rclone_cfg = "No Rclone Config is loaded."
+        rclone_cfg = "❌𝗡𝗼 𝗥𝗰𝗹𝗼𝗻𝗲 𝗖𝗼𝗻𝗳𝗶𝗴 𝗶𝘀 𝗹𝗼𝗮𝗱𝗲𝗱."
     else:
-        rclone_cfg = "Rclone Config is loaded"
+        rclone_cfg = "✅𝗥𝗰𝗹𝗼𝗻𝗲 𝗖𝗼𝗻𝗳𝗶𝗴 𝗶𝘀 𝗹𝗼𝗮𝗱𝗲𝗱"
 
     val1  = get_val("RCLONE_ENABLED")
     if val1 is not None:
         if val1:
-            rclone = "Rclone enabled by admin."
+            rclone = "✅𝗥𝗰𝗹𝗼𝗻𝗲 𝗲𝗻𝗮𝗯𝗹𝗲𝗱 𝗯𝘆 𝗮𝗱𝗺𝗶𝗻."
         else:
-            rclone = "Rclone disabled by admin."
+            rclone = "❌𝗥𝗰𝗹𝗼𝗻𝗲 𝗱𝗶𝘀𝗮𝗯𝗹𝗲𝗱 𝗯𝘆 𝗮𝗱𝗺𝗶𝗻."
     else:
         rclone = "N/A"
 
     val1  = get_val("LEECH_ENABLED")
     if val1 is not None:
         if val1:
-            leen = "Leech command enabled by admin."
+            leen = "✅𝗟𝗲𝗲𝗰𝗵 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝗲𝗻𝗮𝗯𝗹𝗲𝗱 𝗯𝘆 𝗮𝗱𝗺𝗶𝗻."
         else:
-            leen = "Leech command disabled by admin."
+            leen = "❌𝗟𝗲𝗲𝗰𝗵 𝗰𝗼𝗺𝗺𝗮𝗻𝗱 𝗱𝗶𝘀𝗮𝗯𝗹𝗲𝗱 𝗯𝘆 𝗮𝗱𝗺𝗶𝗻."
     else:
         leen = "N/A"
 
@@ -798,13 +811,13 @@ async def about_me(message):
 async def set_thumb_cmd(e):
     thumb_msg = await e.get_reply_message()
     if thumb_msg is None:
-        await e.reply("Reply to a photo or photo as a document.")
+        await e.reply("𝗥𝗲𝗽𝗹𝘆 𝘁𝗼 𝗮 𝗽𝗵𝗼𝘁𝗼 𝗼𝗿 𝗽𝗵𝗼𝘁𝗼 𝗮𝘀 𝗮 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁.")
         return
     
     if thumb_msg.document is not None or thumb_msg.photo is not None:
         value = await thumb_msg.download_media()
     else:
-        await e.reply("Reply to a photo or photo as a document.")
+        await e.reply("𝗥𝗲𝗽𝗹𝘆 𝘁𝗼 𝗮 𝗽𝗵𝗼𝘁𝗼 𝗼𝗿 𝗽𝗵𝗼𝘁𝗼 𝗮𝘀 𝗮 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁.")
         return
 
     try:
@@ -819,7 +832,7 @@ async def set_thumb_cmd(e):
         os.remove(value)
     except Exception:
         torlog.exception("Set Thumb")
-        await e.reply("Errored in setting thumbnail.")
+        await e.reply("🔴𝗘𝗿𝗿𝗼𝗿 𝗶𝗻 𝘀𝗲𝘁𝘁𝗶𝗻𝗴 𝘁𝗵𝘂𝗺𝗯𝗻𝗮𝗶𝗹.")
         return
     
     try:
@@ -827,11 +840,11 @@ async def set_thumb_cmd(e):
     except:pass
 
     user_db.set_var("DISABLE_THUMBNAIL",False, str(e.sender_id))
-    await e.reply("Thumbnail set. try using /usettings to get more control. Can be used in private too.")
+    await e.reply("✅𝗧𝗵𝘂𝗺𝗯𝗻𝗮𝗶𝗹 𝘀𝗲𝘁. 𝘁𝗿𝘆 𝘂𝘀𝗶𝗻𝗴 /usettings 𝘁𝗼 𝗴𝗲𝘁 𝗺𝗼𝗿𝗲 𝗰𝗼𝗻𝘁𝗿𝗼𝗹. 𝗖𝗮𝗻 𝗯𝗲 𝘂𝘀𝗲𝗱 𝗶𝗻 𝗽𝗿𝗶𝘃𝗮𝘁𝗲 𝘁𝗼𝗼.")
 
 async def clear_thumb_cmd(e):
     user_db.set_var("DISABLE_THUMBNAIL",True, str(e.sender_id))
-    await e.reply("Thumbnail disabled. Try using /usettings to get more control. Can be used in private too.")
+    await e.reply("❌𝗧𝗵𝘂𝗺𝗯𝗻𝗮𝗶𝗹 𝗱𝗶𝘀𝗮𝗯𝗹𝗲𝗱. 𝗧𝗿𝘆 𝘂𝘀𝗶𝗻𝗴 /usettings 𝘁𝗼 𝗴𝗲𝘁 𝗺𝗼𝗿𝗲 𝗰𝗼𝗻𝘁𝗿𝗼𝗹. 𝗖𝗮𝗻 𝗯𝗲 𝘂𝘀𝗲𝗱 𝗶𝗻 𝗽𝗿𝗶𝘃𝗮𝘁𝗲 𝘁𝗼𝗼.")
 
 async def handle_user_settings_(message):
     if not message.sender_id in get_val("ALD_USR"):
@@ -841,7 +854,7 @@ async def handle_user_settings_(message):
     await handle_user_settings(message)
 
 def term_handler(signum, frame, client):
-    torlog.info("TERM RECEIVD")
+    torlog.info("TERM RECEIVED")
     async def term_async():
         omess = None
         st = Status().Tasks
@@ -870,7 +883,7 @@ async def booted(client):
     chats = get_val("ALD_USR")
     for i in chats:
         try:
-            await client.send_message(i, "The bot is booted and is ready to use.")
+            await client.send_message(i, "𝗧𝗵𝗲 𝗯𝗼𝘁 𝗶𝘀 𝗯𝗼𝗼𝘁𝗲𝗱 𝗮𝗻𝗱 𝗶𝘀 𝗿𝗲𝗮𝗱𝘆 𝘁𝗼 𝘂𝘀𝗲.")
         except Exception as e:
             torlog.info(f"Not found the entity {i}")
 def command_process(command):

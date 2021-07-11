@@ -19,7 +19,7 @@ class VarHolder:
 
     def get_var(self, variable):
         if variable in self._var_dict.keys():
-            torlog.debug("network call no made")
+            torlog.debug("network call not made")
             return self._var_dict[variable]
         torlog.debug("Nework call made")
         db = self._vardb

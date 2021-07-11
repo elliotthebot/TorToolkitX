@@ -63,38 +63,38 @@ class QBTask(Status):
         return self._omess.sender_id
 
     async def create_message(self):
-        msg = "<b>Downloading:</b> <code>{}</code>\n".format(
+        msg = "\n<b> ╭─────「 ⏬ 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗶𝗻𝗴 ⏬ 」</b>\n<b>│</b>\n<b>├</b> <code>{}</code>".format(
             self._torrent.name
             )
-        msg += "<b>Down:</b> {} <b>Up:</b> {}\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Down:</b> {} <b>Up:</b> {}".format(
             human_readable_bytes(self._torrent.dlspeed,postfix="/s"),
             human_readable_bytes(self._torrent.upspeed,postfix="/s")
             )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Progress:</b> {} - {}%".format(
             self.progress_bar(self._torrent.progress),
             round(self._torrent.progress*100,2)
             )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Downloaded:</b> {} of {}".format(
             human_readable_bytes(self._torrent.downloaded),
             human_readable_bytes(self._torrent.total_size)
             )
-        msg += "<b>ETA:</b> <b>{}</b>\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>ETA:</b> <b>{}</b>".format(
             human_readable_timedelta(self._torrent.eta)
             )
-        msg += "<b>S:</b>{} <b>L:</b>{}\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>S:</b>{} <b>L:</b>{}".format(
             self._torrent.num_seeds,self._torrent.num_leechs
             )
-        msg += "<b>Using engine:</b> <code>qBittorrent</code>"
+        msg += "\n<b>│</b>\n<b>╰────「</b> <b>Using engine:</b> <code>qBittorrent</code> <b>」</b>"
 
         return msg
 
     async def get_state(self):
         #stalled
         if self._torrent.state == "stalledDL":
-            return"Torrent <code>{}</code> is stalled(waiting for connection) temporarily.".format(self._torrent.name)
+            return"🚦𝗧𝗼𝗿𝗿𝗲𝗻𝘁 <code>{}</code> 𝗶𝘀 𝘀𝘁𝗮𝗹𝗹𝗲𝗱(𝘄𝗮𝗶𝘁𝗶𝗻𝗴 𝗳𝗼𝗿 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗶𝗼𝗻)𝘁𝗲𝗺𝗽𝗼𝗿𝗮𝗿𝗶𝗹𝘆.".format(self._torrent.name)
         #meta stage
         elif self._torrent.state == "metaDL":
-            return  "Getting metadata for {} - {}".format(self._torrent.name,datetime.now().strftime("%H:%M:%S"))
+            return  "🧲𝗚𝗲𝘁𝘁𝗶𝗻𝗴 𝗺𝗲𝘁𝗮𝗱𝗮𝘁𝗮 𝗳𝗼𝗿 {} - {}".format(self._torrent.name,datetime.now().strftime("%H:%M:%S"))
         elif self._torrent.state == "downloading" or self._torrent.state.lower().endswith("dl"):
             # kept for past ref
             return None
@@ -219,28 +219,28 @@ class ARTask(Status):
         except:
             pass
 
-        msg = "<b>Downloading:</b> <code>{}</code>\n".format(
+        msg = "\n<b> ╭─────「 ⏬ 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗶𝗻𝗴 ⏬ 」</b>\n<b>│</b>\n<b>├</b> <code>{}</code>".format(
             downloading_dir_name
             )
-        msg += "<b>Down:</b> {} <b>Up:</b> {}\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Down:</b> {} <b>Up:</b> {}".format(
             self._dl_file.download_speed_string(),
             self._dl_file.upload_speed_string()
             )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Progress:</b> {} - {}%".format(
             self.progress_bar(self._dl_file.progress/100),
             round(self._dl_file.progress,2)
             )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Downloaded:</b> {} of {}".format(
             human_readable_bytes(self._dl_file.completed_length),
             human_readable_bytes(self._dl_file.total_length)
             )
-        msg += "<b>ETA:</b> <b>{}</b>\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>ETA:</b> <b>{}</b>\n".format(
             self._dl_file.eta_string()
             )
-        msg += "<b>Conns:</b>{} <b>\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Conns:</b>{} <b>".format(
             self._dl_file.connections
             )
-        msg += "<b>Using engine:</b> <code>Aria2 For DirectLinks</code>"
+        msg += "\n<b>│</b>\n<b>╰────「</b> <b>Using engine:</b> <code>Aria2 For DirectLinks</code> <b>」</b>"
 
         return msg
 
@@ -360,23 +360,23 @@ class MegaDl(Status):
         # Getting the vars pre handed
         
 
-        msg = "<b>Downloading:</b> <code>{}</code>\n".format(
+        msg = "\n<b>╭─────「 ⏬ 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗶𝗻𝗴 ⏬ 」</b>\n<b>│</b>\n<b>├</b> <code>{}</code>".format(
             self._dl_info["name"]
             )
-        msg += "<b>Speed:</b> {}\n".format(
+        msg += "\n<b>│</b>\n<b>├</b>  <b>Speed:</b> {}".format(
             human_readable_bytes(self._dl_info["speed"])
             )
-        msg += "<b>Progress:</b> {} - {}%\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Progress:</b> {} - {}%".format(
             self.progress_bar((self._dl_info["completed_length"]/self._dl_info["total_length"])),
             round((self._dl_info["completed_length"]/self._dl_info["total_length"])*100, 2)
             )
-        msg += "<b>Downloaded:</b> {} of {}\n".format(
+        msg += "\n<b>│</b>\n<b>├</b> <b>Downloaded:</b> {} of {}".format(
             human_readable_bytes(self._dl_info["completed_length"]),
             human_readable_bytes(self._dl_info["total_length"])
             )
-        msg += "<b>ETA:</b> <b>N/A</b>\n"
+        msg += "\n<b>│</b>\n<b>├</b> <b>ETA:</b> <b>N/A</b>\n<b>│</b>"
         
-        msg += "<b>Using engine:</b> <code>Mega DL</code>"
+        msg += "\n<b>╰────「</b> <b>Using engine:</b> <code>Mega DL</code> <b>」</b>"
 
         return msg
 
